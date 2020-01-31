@@ -1,0 +1,39 @@
+{
+  "name": "clover",
+  "version": "1.0.0",
+  "description": "Teste a sorte grátis com os resultados de jogos da loteria!",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eugenio-cunha/clover.git"
+  },
+  "keywords": [
+    "sorte",
+    "loteria"
+  ],
+  "author": "Eugênio Cunha <eugenio.cunha@ymail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eugenio-cunha/clover/issues"
+  },
+  "homepage": "https://github.com/eugenio-cunha/clover#readme",
+  "devDependencies": {
+    "@types/node": "^12.12.14",
+    "@types/react": "^16.9.13",
+    "@types/react-dom": "^16.9.4",
+    "@types/styled-components": "^4.4.0",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.2"
+  },
+  "dependencies": {
+    "next": "^9.1.4",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "styled-components": "^4.4.1"
+  }
+}
