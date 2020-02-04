@@ -16,7 +16,7 @@ export default class Hub extends App {
           <meta name='HandheldFriendly' content='True' />
           <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
           <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
-          <title>HUB</title>
+          <title>Sorte Gratis</title>
         </Head>
         <ThemeProvider theme={Theme}>
           <GlobalStyle />
