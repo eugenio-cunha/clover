@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
-import Display from './display';
-import Winner from './winner';
-import Keypad from './keypad';
+import styled from 'styled-components';
 
-const Ticket = () => {
+// import Display from './display';
+import { Ball } from './ball';
+
+export const Ticket = () => {
 
   const [numbers, setNumbers] = useState<number[] >([]);
-  const [six] = useState<number >(0);
-  const [five] = useState<number >(0);
-  const [four] = useState<number >(0);
 
-  const onChangeNumbersHandler = (event: { target: any; }) => {
+  const onChangeNumbersHandler = (event: any) => {
     const { target } = event;
     setNumbers(n => {
-      if (!target.checked || n.length >= 15) {
+      if (n.length >= 15 || !target.checked) {
         target.checked = false;
         return [...n.filter(e => e !== target.value)];
       } else {
@@ -22,13 +20,27 @@ const Ticket = () => {
     });
   };
 
-  return (<>
-    <Keypad onChange={onChangeNumbersHandler}></Keypad>
-    <Display values={numbers} > </Display>
-    <Winner title='Sena' value={six} ></Winner>
-    <Winner title='Quina' value={five} ></Winner>
-    <Winner title='Quadra' value={four} ></Winner>
-  </>);
-};
+  const Selected = styled.div`
+    margin: 5px;
+    height: 40px;
+  `;
 
-export default Ticket;
+  const Score = styled.div`
+    margin: 5px;
+    height: 40px;
+  `;
+
+  const Balls = <table>{
+    Array.from({ length: 6 }, (_1, i: number) =>
+      (<tr>{Array.from({ length: 10 }, (_2, j: number) =>
+        (<td><Ball num={+`${i}${j}` + 1} onChange={e => onChangeNumbersHandler(e)}/></td>))}</tr>))
+
+  }</table>;
+
+  return (<div>
+      {Balls}
+      <Selected>Dezenas selecionadas: {numbers.length}</Selected>
+      {/* <Display values={numbers} > </Display> */}
+      <Score >Você teria feito x pontos em y concursos</Score>
+      </div>);
+};

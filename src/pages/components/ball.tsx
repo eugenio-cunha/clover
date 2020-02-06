@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-const Span = styled.span`
+const Checkbox = styled.span`
   width: 44px;
   height: 44px;
   display: inline-block;
@@ -21,25 +21,27 @@ const Span = styled.span`
   font-family: arial,sans-serif-light,sans-serif;
 `;
 
-const Input = styled.input`
-  &:checked + ${Span} {
+const Hidden = styled.input`
+  display: none;
+  &:checked + ${Checkbox} {
     color: #fff;
     background: #008f58;
     border-color: #008f58;
   }
-  display: none;
 `;
 
-interface IProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value'> {
-  value: number;
+interface IProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'num'> {
+  num: number;
   onChange(e: any): void;
 }
 
-const Button: React.FunctionComponent<IProps> = ({ children, onChange, ...shared }) => (<>
+export const Ball: React.FunctionComponent<IProps> = ({ onChange, num, ...shared }) => (<>
   <label>
-    <Input type='checkbox' onChange={e => onChange(e)} {...shared} />
-    <Span>{shared.value}</Span>
+    <Hidden value={num} onChange={ e => onChange(e)} {...shared }></Hidden>
+    <Checkbox>{num}</Checkbox>
   </label>
 </>);
 
-export default Button;
+Ball.defaultProps = {
+  type: 'checkbox'
+};

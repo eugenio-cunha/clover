@@ -2,20 +2,31 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 const Span = styled.span`
-  margin: 3px;
-  color: #008f58;
-  line-height: 36px;
+  color: #fff;
+  width: 44px;
+  height: 44px;
+  background: #008f58;
+  border-color: #008f58;
   display: inline-block;
-  font-family: arial, sans-serif;
+  vertical-align: middle;
+  box-sizing: border-box;
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 44px;
+  letter-spacing: 2px;
+  text-align: center;
+  border-radius: 50%;
+  padding: 0 0 0 2px;
+  margin: 5px 5px 0 0;
+  box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);
+  font-family: arial,sans-serif-light,sans-serif;
 `;
 
 const Container = styled.div`
-  margin: 3px;
-  height: 40px;
-  max-width: 400px;
+  margin: 5px;
+  padding: 5px;
+  max-height: 120px;
   text-align: center;
-  border-radius: 3px;
-  background-color: #f5f5f5;
 `;
 
 interface IProps extends Omit<React.InputHTMLAttributes<HTMLDivElement>, 'values'> {
