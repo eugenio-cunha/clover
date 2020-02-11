@@ -2,31 +2,34 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 const Checkbox = styled.span`
-  width: 44px;
-  height: 44px;
-  display: inline-block;
-  position: relative;
-  vertical-align: middle;
-  box-sizing: border-box;
-  font-size: 22px;
-  font-weight: 300;
-  line-height: 44px;
-  letter-spacing: 2px;
-  text-align: center;
   border-radius: 50%;
-  padding: 0 0 0 2px;
-  margin: 5px 5px 0 0;
+  border: 1px solid #dfe1e5;
+  color: #5F6368;
   cursor: pointer;
-  box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);
-  font-family: arial,sans-serif-light,sans-serif;
-`;
+  display: inline-block;
+  font-size: 22px;
+  height: 44px;
+  letter-spacing: 2px;
+  line-height: 40px;
+  margin: 5px 5px 0 0;
+  padding: 0 0 0 2px;
+  text-align: center;
+  width: 44px;
+  font-family: arial,sans-serif;
+  &:hover {
+    background-color: #f8f8f8;
+    border-color: rgba(223,225,229,0);
+    box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);
+  }
+  `;
 
 const Hidden = styled.input`
   display: none;
   &:checked + ${Checkbox} {
+    background-color: #209869;
+    border-color: #209869;
+    box-shadow: 0 1px 6px 0 #209869;
     color: #fff;
-    background: #008f58;
-    border-color: #008f58;
   }
 `;
 

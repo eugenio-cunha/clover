@@ -1,46 +1,32 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
 
-// import Display from './display';
 import { Ball } from './ball';
 
-export const Ticket = () => {
+interface IProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'jackpot'> {
+  jackpot(nunbers: number[]): void;
+}
 
-  const [numbers, setNumbers] = useState<number[] >([]);
+export const Ticket: React.FunctionComponent<IProps> = ({ jackpot }) => {
 
-  const onChangeNumbersHandler = (event: any) => {
+  const [numbers, setNumbers] = useState<number[]>([]);
+
+  useEffect(() => jackpot(numbers));
+
+  const onChangeNumbersHandler = (event: any): void => {
     const { target } = event;
     setNumbers(n => {
+      let result = [...n, target.value];
       if (n.length >= 15 || !target.checked) {
         target.checked = false;
-        return [...n.filter(e => e !== target.value)];
-      } else {
-        return [...n, target.value];
+        result = [...n.filter(e => e !== target.value)];
       }
+      return result;
     });
   };
 
-  const Selected = styled.div`
-    margin: 5px;
-    height: 40px;
-  `;
-
-  const Score = styled.div`
-    margin: 5px;
-    height: 40px;
-  `;
-
-  const Balls = <table>{
-    Array.from({ length: 6 }, (_1, i: number) =>
-      (<tr>{Array.from({ length: 10 }, (_2, j: number) =>
-        (<td><Ball num={+`${i}${j}` + 1} onChange={e => onChangeNumbersHandler(e)}/></td>))}</tr>))
-
-  }</table>;
-
-  return (<div>
-      {Balls}
-      <Selected>Dezenas selecionadas: {numbers.length}</Selected>
-      {/* <Display values={numbers} > </Display> */}
-      <Score >Você teria feito x pontos em y concursos</Score>
-      </div>);
+  return <table>{
+      Array.from({ length: 6 }, (_1, i: number) =>
+        (<tr>{Array.from({ length: 10 }, (_2, j: number) =>
+          (<td><Ball num={+`${i}${j}` + 1} onChange={e => (onChangeNumbersHandler(e))} /></td>))}</tr>))
+    }</table>;
 };

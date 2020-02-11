@@ -24,7 +24,7 @@ export default class Doc extends Document {
             {sheet.getStyleElement()}
           </>
         )
-      }
+      };
     } finally {
       sheet.seal();
     }
