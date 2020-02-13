@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-
-import { Ball } from './ball';
+import Ball from './ball';
 
 interface IProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'jackpot'> {
   jackpot(nunbers: number[]): void;
 }
 
-export const Ticket: React.FunctionComponent<IProps> = ({ jackpot }) => {
+const Ticket: React.FunctionComponent<IProps> = ({ jackpot }) => {
 
   const [numbers, setNumbers] = useState<number[]>([]);
 
@@ -30,3 +29,5 @@ export const Ticket: React.FunctionComponent<IProps> = ({ jackpot }) => {
           (<td><Ball num={+`${i}${j}` + 1} onChange={e => (onChangeNumbersHandler(e))} /></td>))}</tr>))
     }</table>;
 };
+
+export default Ticket;

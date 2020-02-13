@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { GlobalStyle, Theme } from '../styles';
 import { ThemeProvider } from 'styled-components';
 
-export default class Hub extends App {
+export default class Clover extends App {
   public render() {
     const { Component, pageProps } = this.props;
     return (

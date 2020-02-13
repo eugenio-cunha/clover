@@ -38,7 +38,7 @@ interface IProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onCh
   onChange(e: any): void;
 }
 
-export const Ball: React.FunctionComponent<IProps> = ({ onChange, num, ...shared }) => (<>
+const Ball: React.FunctionComponent<IProps> = ({ onChange, num, ...shared }) => (<>
   <label>
     <Hidden value={num} onChange={ e => onChange(e)} {...shared }></Hidden>
     <Checkbox>{num}</Checkbox>
@@ -48,3 +48,5 @@ export const Ball: React.FunctionComponent<IProps> = ({ onChange, num, ...shared
 Ball.defaultProps = {
   type: 'checkbox'
 };
+
+export default Ball;
