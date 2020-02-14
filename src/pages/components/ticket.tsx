@@ -1,33 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import Ball from './ball';
 
-interface IProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'jackpot'> {
+interface IProps {
+  start: number;
+  stop: number;
+  choices: number;
   jackpot(nunbers: number[]): void;
 }
 
-const Ticket: React.FunctionComponent<IProps> = ({ jackpot }) => {
+const Ticket: React.FunctionComponent<IProps> = ({ start, stop, choices, jackpot }) => {
 
   const [numbers, setNumbers] = useState<number[]>([]);
 
   useEffect(() => jackpot(numbers));
 
-  const onChangeNumbersHandler = (event: any): void => {
-    const { target } = event;
+  const onChangeNumbers = (event: any): void => {
     setNumbers(n => {
-      let result = [...n, target.value];
-      if (n.length >= 15 || !target.checked) {
-        target.checked = false;
-        result = [...n.filter(e => e !== target.value)];
+      let result = [...n, event.target.value];
+      if (!event.target.checked || n.length >= choices) {
+        event.target.checked = false;
+        result = [...n.filter(e => e !== event.target.value)];
       }
       return result;
     });
   };
 
-  return <table>{
-      Array.from({ length: 6 }, (_1, i: number) =>
-        (<tr>{Array.from({ length: 10 }, (_2, j: number) =>
-          (<td><Ball num={+`${i}${j}` + 1} onChange={e => (onChangeNumbersHandler(e))} /></td>))}</tr>))
-    }</table>;
+return <div style={{ width: '500px' }} >{(new Array(stop - start + 1)).fill(null).map((_, i) =>
+  (<Ball value={i + start} onChange={onChangeNumbers} />))}</div>;
 };
 
 export default Ticket;

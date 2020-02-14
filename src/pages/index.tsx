@@ -7,7 +7,7 @@ import data from '../json/mega_sena.json';
 
 const IndexPage: NextPage = () => {
   return <Layout title='Mega Sena'>
-      <Ticket jackpot={n => console.info(n)}/>
+      <Ticket start={1} stop={60} choices={15} jackpot={n => console.info(n)}/>
   </Layout>;
 };
 

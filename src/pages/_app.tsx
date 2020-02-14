@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import App from 'next/app';
 import Head from 'next/head';
 import { GlobalStyle, Theme } from '../styles';
@@ -15,8 +15,9 @@ export default class Clover extends App {
           <meta httpEquiv='cleartype' content='on' />
           <meta name='HandheldFriendly' content='True' />
           <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
-          <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
+          <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'/>
           <title>Sorte Gratis</title>
+          <link href='https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap' rel='stylesheet'/>
         </Head>
         <ThemeProvider theme={Theme}>
           <GlobalStyle />
