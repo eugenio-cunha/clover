@@ -14,19 +14,22 @@ const Ticket: React.FunctionComponent<IProps> = ({ start, stop, choices, jackpot
 
   useEffect(() => jackpot(numbers));
 
-  const onChangeNumbers = (event: any): void => {
+  const handleChange = (event: any): void => {
+    const { target } = event;
     setNumbers(n => {
-      let result = [...n, event.target.value];
-      if (!event.target.checked || n.length >= choices) {
-        event.target.checked = false;
-        result = [...n.filter(e => e !== event.target.value)];
+      let result: number[] = [...n, target.value];
+      if (!target.checked || n.length >= choices) {
+        target.checked = false;
+        result = [...n.filter(e => e !== target.value)];
       }
       return result;
     });
   };
 
-return <div style={{ width: '500px' }} >{(new Array(stop - start + 1)).fill(null).map((_, i) =>
-  (<Ball value={i + start} onChange={onChangeNumbers} />))}</div>;
+  return <>{ new Array(stop - start + 1).fill(null).map((_, i) =>
+    <Ball key={i} value={i + start} onChange={handleChange} />)
+  }</>;
+
 };
 
 export default Ticket;

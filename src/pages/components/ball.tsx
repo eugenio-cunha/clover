@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 
 const Label = styled.label`
@@ -35,11 +35,16 @@ const Input = styled.input`
 
 interface IProps {
   value: number;
-  onChange(e: any): void;
+  onChange(event: any): void;
 }
-const Ball: React.FunctionComponent<IProps> = ({ value, onChange }) => (<span>
-  <Input id={`${value}`} type='checkbox' value={value} onChange={onChange} />
-  <Label htmlFor={`${value}`}>{value}</Label>
-</span>);
+const Ball: React.FunctionComponent<IProps> = ({ value, onChange }) => {
 
-export default Ball;
+  const handleChange = (event: any): void => onChange(event);
+
+  return (<span>
+    <Input id={`${value}`} type='checkbox' value={value} onChange={handleChange} />
+    <Label htmlFor={`${value}`}>{value}</Label>
+  </span>);
+};
+
+export default memo(Ball);
