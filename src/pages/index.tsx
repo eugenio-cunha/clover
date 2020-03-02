@@ -33,39 +33,38 @@ const IndexPage: NextPage = () => {
   const handleChange = (event: any): void => {
     const { target } = event;
     if (target.value) {
-      const ball = +target.value;
+      setScoreboard(e => {
+        const ball = +target.value;
 
-      let hits: IHit[] = [];
-      if (scoreboard.hits.length === 15 || scoreboard.hits.find(h => h.ball === ball)) {
-        target.checked = false;
-        hits = scoreboard.hits.filter(h => h.ball !== ball);
-      } else {
-        const hit = data.find((h: { ball: number, sweepstakes: number[] }) => h.ball === ball);
-        if (hit) {
-          hits = [...scoreboard.hits.filter(h => h.ball !== ball), hit];
-        }
-      }
-
-      const scores: IScore[] = [];
-      let sweepstakes = scoreboard.hits.map(s => s.sweepstakes).flat().sort((a, b) => a - b);
-      sweepstakes = sweepstakes.reduce((prev: any, cur: any) => {
-        prev[cur] = (prev[cur] || 0) + 1;
-        return prev;
-      }, {});
-
-      let count: number | any;
-      let sweepstake: string | any;
-      for ([sweepstake, count] of Object.entries(sweepstakes)) {
-        const s = scores.find(r => r.hits === count);
-        if (s) {
-          ++s.count;
-          s.sweepstakes.push(+sweepstake);
+        if (e.hits.length === 15 || e.hits.find(h => h.ball === ball)) {
+          target.checked = false;
+          e.hits = e.hits.filter(h => h.ball !== ball);
         } else {
-          scores.push({ hits: count, count: 1, sweepstakes: [+sweepstake] });
+          const hit = data.find((h: { ball: number, sweepstakes: number[] }) => h.ball === ball);
+          if (hit) {
+            e.hits = [...e.hits, hit];
+          }
         }
-      }
 
-      setScoreboard({ hits, scores });
+        const set = e.hits.map(s => s.sweepstakes).flat().sort((a, b) => a - b);
+        const indexed = set.reduce((prev: any, cur: any) => {
+          prev[cur] = (prev[cur] || 0) + 1;
+          return prev;
+        }, {});
+
+        e.scores = [];
+        for (const key of Object.keys(indexed)) {
+          const count = indexed[key];
+          const score = e.scores.find(r => r.hits === count);
+          if (score) {
+            ++score.count;
+            score.sweepstakes.push(+key);
+          } else {
+            e.scores.push({ hits: count, count: 1, sweepstakes: [+key] });
+          }
+        }
+        return { ...e };
+      });
     }
   };
 
