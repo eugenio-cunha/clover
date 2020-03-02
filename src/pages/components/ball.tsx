@@ -2,11 +2,12 @@ import React, { memo } from 'react';
 import styled from 'styled-components';
 
 const Label = styled.label`
-  border-radius: 50%;
   border: 1px solid #dfe1e5;
+  border-radius: 50%;
   color: #5F6368;
   cursor: pointer;
   display: inline-block;
+  font-family: arial,sans-serif;
   font-size: 22px;
   height: 44px;
   letter-spacing: 2px;
@@ -15,7 +16,6 @@ const Label = styled.label`
   padding: 0 0 0 2px;
   text-align: center;
   width: 44px;
-  font-family: arial,sans-serif;
   &:hover {
     background-color: #f8f8f8;
     border-color: rgba(223,225,229,0);
@@ -35,11 +35,17 @@ const Input = styled.input`
 
 interface IProps {
   value: number;
+  // onChange(event: { target: {value: string, checked: boolean }}): void;
   onChange(event: any): void;
 }
+
 const Ball: React.FunctionComponent<IProps> = ({ value, onChange }) => {
 
-  const handleChange = (event: any): void => onChange(event);
+  const handleChange = (event: any): void => {
+    if (event) {
+      onChange(event);
+    }
+  };
 
   return (<span>
     <Input id={`${value}`} type='checkbox' value={value} onChange={handleChange} />
