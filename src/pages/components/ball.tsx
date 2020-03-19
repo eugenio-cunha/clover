@@ -16,6 +16,7 @@ const Label = styled.label`
   padding: 0 0 0 2px;
   text-align: center;
   width: 44px;
+  background-color: #ffffff;
   &:hover {
     background-color: #f8f8f8;
     border-color: rgba(223,225,229,0);
@@ -35,7 +36,6 @@ const Input = styled.input`
 
 interface IProps {
   value: number;
-  // onChange(event: { target: {value: string, checked: boolean }}): void;
   onChange(event: any): void;
 }
 

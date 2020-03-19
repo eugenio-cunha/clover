@@ -11,7 +11,7 @@ const Container = styled.footer`
 
 const Footer = () => (
   <Container>
-    <div>footer</div>
+    <div>© COPYRIGHT 2020, Euge</div>
   </Container>
 );
 

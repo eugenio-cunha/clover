@@ -18,7 +18,9 @@ const Container = styled.div`
 const Main = styled.main`
   grid-area: main;
   padding: 3px;
-  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Layout: React.FunctionComponent<{title?: string}> = ({ children, title }) => (

@@ -6,12 +6,8 @@ interface IProps {
   onChange(event: any): void;
 }
 
-const Ticket: React.FunctionComponent<IProps> = ({ data, onChange }) => {
-
-  return <>{ data.map((e: { ball: number }, i: number) =>
-    <Ball key={i} value={e.ball} onChange={onChange} />)
-  }</>;
-
+const Ticket: React.FunctionComponent<IProps> = ({ data = [], onChange }) => {
+  return <>{ data.map((e: { ball: number }, i: number) => <Ball key={i} value={e.ball} onChange={onChange} />) }</>;
 };
 
 export default Ticket;
